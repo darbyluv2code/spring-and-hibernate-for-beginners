@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.luv2code</groupId>
+	<artifactId>spring-rest-demo</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+
+		<!-- Add Spring MVC and REST support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.0.5.RELEASE</version>
+		</dependency>
+		
+		<!-- Add Jackson for JSON converters -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.9.2</version>
+		</dependency>
+
+		<!-- Add Servlet support for 
+			 Spring's AbstractAnnotationConfigDispatcherServletInitializer -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!-- Add support for JSP ... get rid of Eclipse error -->				 
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+				 
+	</dependencies>
+
+	<!-- Support for Maven WAR Plugin -->
+
+	<build>
+		<finalName>spring-rest-demo</finalName>
+	
+		<pluginManagement>
+			<plugins>
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-war-plugin</artifactId>
+				    <version>3.2.0</version>					
+				</plugin>						
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

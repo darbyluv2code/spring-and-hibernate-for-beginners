@@ -1,0 +1,14 @@
+{
+	"id": 14,
+	"firstName": "Luca",
+	"lastName": "Fischer",
+	"active": true,
+	"address": {
+		"street": "100 Main St",
+		"city": "Philadelphia",
+		"state": "Pennsylvania",
+		"zip": "19403",
+		"country": "USA"
+	},
+	"languages" : ["Java", "C#", "Python", "Javascript"]
+}
