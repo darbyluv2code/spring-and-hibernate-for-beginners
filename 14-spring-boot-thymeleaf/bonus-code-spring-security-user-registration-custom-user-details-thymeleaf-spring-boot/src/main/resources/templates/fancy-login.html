@@ -31,7 +31,7 @@
 				<div style="padding-top: 30px" class="panel-body">
 
 					<!-- Login Form -->
-					<form action="#" th:action="@{/authenticateTheUser}" 
+					<form th:action="@{/authenticateTheUser}" 
 						  method="POST" class="form-horizontal">
 
 					    <!-- Place for messages: error, alert etc ... -->
@@ -73,12 +73,6 @@
 								<button type="submit" class="btn btn-success">Login</button>
 							</div>
 						</div>
-
-						<!-- I'm manually adding tokens ... Bro! -->
-
-						<input type="hidden"
-							   th:name="${_csrf.parameterName}"
-							   th:value="${_csrf.token}" />
 						
 					</form>
 

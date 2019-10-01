@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 	<title>Employee Directory</title>
 </head>
@@ -28,7 +28,7 @@
 		<br><br>
 	</div>
 	
-    <form action="#" th:action="@{/employees/search}" class="form-inline">
+    <form th:action="@{/employees/search}" class="form-inline">
 		<a th:href="@{/employees/showFormForAdd}"
 			class="btn btn-primary btn-sm mr-5 mb-3">
 			Add Employee
@@ -58,7 +58,6 @@
 				<td th:text="${tempEmployee.email}" />	
 				
 				<td>
-
 					<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
 
 						<!-- Add "update" button/link -->
@@ -78,8 +77,7 @@
 							Delete
 						</a>
 
-					</div>
-
+					</div>					
 				</td>
 				
 				
