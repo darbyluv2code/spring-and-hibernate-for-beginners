@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<springframework.version>5.0.6.RELEASE</springframework.version>
+		<springframework.version>5.2.3.RELEASE</springframework.version>
 		<hibernate.version>5.4.1.Final</hibernate.version>
 		<mysql.connector.version>5.1.45</mysql.connector.version>
 		<c3po.version>0.9.5.4</c3po.version>
