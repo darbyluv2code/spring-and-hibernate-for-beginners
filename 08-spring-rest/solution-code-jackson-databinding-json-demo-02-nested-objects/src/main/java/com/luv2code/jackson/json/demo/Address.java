@@ -1,4 +1,4 @@
-package com.luv2code.jacksondemo;
+package com.luv2code.jackson.json.demo;
 
 public class Address {
 
@@ -51,5 +51,6 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
 	
 }

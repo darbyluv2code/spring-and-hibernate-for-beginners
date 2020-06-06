@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.luv2code</groupId>
-	<artifactId>jackson-json-demo</artifactId>
+	<artifactId>jackson-databind-json-demo-02-nested-objects</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
@@ -17,12 +17,14 @@
 
 	<dependencies>
 
+		<!-- TODO: Add your dependency here -->
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.10.4</version>
-		</dependency>
-
+			<version>2.9.5</version>
+		</dependency>	
+			
 	</dependencies>
 
 </project>
