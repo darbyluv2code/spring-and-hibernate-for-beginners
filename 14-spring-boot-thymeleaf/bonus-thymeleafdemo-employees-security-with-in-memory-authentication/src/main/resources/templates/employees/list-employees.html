@@ -46,7 +46,10 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email</th>
-				<th>Action</th>
+
+				<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+					<th>Action</th>
+				</div>					
 			</tr>
 		</thead>
 		
@@ -56,30 +59,33 @@
 				<td th:text="${tempEmployee.firstName}" />	
 				<td th:text="${tempEmployee.lastName}" />	
 				<td th:text="${tempEmployee.email}" />	
-				
-				<td>
-					<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
 
-						<!-- Add "update" button/link -->
-						<a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}"
-						   class="btn btn-info btn-sm">
-							Update
-						</a>
-
-					</div>					
+				<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
 				
-					<div sec:authorize="hasRole('ROLE_ADMIN')">  
+					<td>
+						<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+	
+							<!-- Add "update" button/link -->
+							<a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}"
+							   class="btn btn-info btn-sm">
+								Update
+							</a>
+	
+						</div>					
 					
-						<!-- Add "delete" button/link -->					
-						<a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
-						   class="btn btn-danger btn-sm"
-						   onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
-							Delete
-						</a>
+						<div sec:authorize="hasRole('ROLE_ADMIN')">  
+						
+							<!-- Add "delete" button/link -->					
+							<a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
+							   class="btn btn-danger btn-sm"
+							   onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+								Delete
+							</a>
+	
+						</div>					
+					</td>
 
-					</div>					
-				</td>
-				
+				</div>				
 				
 			</tr>
 		</tbody>		
