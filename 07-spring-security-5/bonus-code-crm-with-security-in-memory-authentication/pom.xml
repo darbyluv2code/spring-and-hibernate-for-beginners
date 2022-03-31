@@ -10,7 +10,7 @@
 	<name>crm-with-security-in-memory</name>
 
 	<properties>
-		<springframework.version>5.2.3.RELEASE</springframework.version>
+		<springframework.version>5.3.18</springframework.version>
 		<springsecurity.version>5.0.1.RELEASE</springsecurity.version>
 
 		<hibernate.version>5.4.1.Final</hibernate.version>
