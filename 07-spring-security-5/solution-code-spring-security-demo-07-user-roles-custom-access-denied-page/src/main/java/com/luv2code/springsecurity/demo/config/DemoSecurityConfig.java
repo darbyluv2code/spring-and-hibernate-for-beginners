@@ -56,7 +56,8 @@ public class DemoSecurityConfig {
                                 .permitAll())
 
                 .logout(configurer -> 
-                		configurer.permitAll())
+                		configurer
+                			.permitAll())
 
                 .exceptionHandling(configurer ->
                 					configurer
