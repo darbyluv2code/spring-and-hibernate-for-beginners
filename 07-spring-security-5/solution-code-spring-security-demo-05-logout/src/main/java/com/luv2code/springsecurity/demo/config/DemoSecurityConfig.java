@@ -37,24 +37,28 @@ public class DemoSecurityConfig {
         return new InMemoryUserDetailsManager(john, mary, susan);
         
     }
-
+    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
         return http
-                .authorizeRequests(authz ->
-                			authz
-                                .anyRequest()
-                                .authenticated())
-                .formLogin(authz ->
-                			authz
+                .authorizeRequests(configurer ->
+                					configurer
+		                                .anyRequest()
+		                                .authenticated())
+                
+                .formLogin(configurer ->
+                			configurer
                                 .loginPage("/showMyLoginPage")
                                 .loginProcessingUrl("/authenticateTheUser")
                                 .permitAll())
-                .logout(authz -> 
-                		authz.permitAll())
+                
+                .logout(configurer -> 
+                			configurer
+                				.permitAll())
+
                 .build();
         
     }	
-    
+
 }
