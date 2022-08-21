@@ -26,13 +26,13 @@ public class DemoSecurityConfig {
         UserDetails mary = User.builder()
                 .username("mary")
                 .password("{noop}test123")
-                .roles("MANAGER")
+                .roles("EMPLOYEE", "MANAGER")
                 .build();
 
         UserDetails susan = User.builder()
                 .username("susan")
                 .password("{noop}test123")
-                .roles("ADMIN")
+                .roles("EMPLOYEE", "ADMIN")
                 .build();
         
         return new InMemoryUserDetailsManager(john, mary, susan);
