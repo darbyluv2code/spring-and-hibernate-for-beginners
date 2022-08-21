@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.luv2code</groupId>
-	<artifactId>spring-security-demo</artifactId>
+	<artifactId>spring-security-demo-02-basic-security</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
