@@ -34,41 +34,29 @@ public class DemoSecurityConfig {
                 .roles("EMPLOYEE", "ADMIN")
                 .build();
         
-        return new InMemoryUserDetailsManager(john, mary, susan);
-        
+        return new InMemoryUserDetailsManager(john, mary, susan);        
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
-        return http
-                .authorizeRequests(configurer ->
-                					configurer
-	                					.antMatchers("/").hasRole("EMPLOYEE")
-	                					.antMatchers("/leaders/**").hasRole("MANAGER")
-	                					.antMatchers("/systems/**").hasRole("ADMIN"))
-
-                .formLogin(configurer ->
-                			configurer
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
-                                .permitAll())
-
-                .logout(configurer -> 
-                		configurer
-                			.permitAll())
-
-                .build();
-        
+    	return http
+		.authorizeRequests(configurer ->
+			configurer
+				.antMatchers("/").hasRole("EMPLOYEE")
+				.antMatchers("/leaders/**").hasRole("MANAGER")
+				.antMatchers("/systems/**").hasRole("ADMIN"))
+		
+		.formLogin(configurer ->
+			configurer
+				.loginPage("/showMyLoginPage")
+				.loginProcessingUrl("/authenticateTheUser")
+				.permitAll())
+		
+		.logout(configurer -> 
+			configurer
+				.permitAll())
+		
+		.build();        
     }	
-    
 }
-
-
-
-
-
-
-
-
-
