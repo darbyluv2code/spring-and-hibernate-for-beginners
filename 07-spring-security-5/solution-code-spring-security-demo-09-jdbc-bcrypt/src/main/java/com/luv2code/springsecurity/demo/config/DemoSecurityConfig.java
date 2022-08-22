@@ -54,7 +54,5 @@ public class DemoSecurityConfig {
 					.accessDeniedPage("/access-denied"))
 			
 			.build();
-
 	}
-
 }
