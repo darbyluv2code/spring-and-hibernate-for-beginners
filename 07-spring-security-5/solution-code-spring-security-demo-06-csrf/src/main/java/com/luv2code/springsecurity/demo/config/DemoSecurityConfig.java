@@ -34,8 +34,7 @@ public class DemoSecurityConfig {
                 .roles("ADMIN")
                 .build();
         
-        return new InMemoryUserDetailsManager(john, mary, susan);
-        
+        return new InMemoryUserDetailsManager(john, mary, susan); 
     }
     
     @Bean
