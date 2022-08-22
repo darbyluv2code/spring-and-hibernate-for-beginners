@@ -41,24 +41,22 @@ public class DemoSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
-        return http
-                .authorizeRequests(configurer ->
-                					configurer
-		                                .anyRequest()
-		                                .authenticated())
-                
-                .formLogin(configurer ->
-                			configurer
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
-                                .permitAll())
-                
-                .logout(configurer -> 
-                			configurer
-                				.permitAll())
-
-                .build();
-        
+		return http
+		.authorizeRequests(configurer ->
+			configurer
+			.anyRequest()
+			.authenticated())
+		
+		.formLogin(configurer ->
+			configurer
+				.loginPage("/showMyLoginPage")		
+				.loginProcessingUrl("/authenticateTheUser")
+				.permitAll())
+		
+		.logout(configurer -> 
+			configurer
+				.permitAll())
+		
+		.build();        
     }	
-
 }
