@@ -25,7 +25,7 @@ public class DemoSecurityConfig {
 	}
 
 	@Bean
-	public UserDetailsManager userDetailsService() {
+	public UserDetailsManager userDetailsManager() {
 		return new JdbcUserDetailsManager(securityDataSource);
 	}
 
