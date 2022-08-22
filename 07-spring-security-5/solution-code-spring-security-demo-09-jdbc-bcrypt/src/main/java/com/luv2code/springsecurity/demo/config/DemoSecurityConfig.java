@@ -3,54 +3,58 @@ package com.luv2code.springsecurity.demo.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
+public class DemoSecurityConfig  {
 
 	// add a reference to our security data source
-	
-	@Autowired
+		
 	private DataSource securityDataSource;
 	
+	@Autowired
+	public DemoSecurityConfig(DataSource theSecurityDataSource) {
+		securityDataSource = theSecurityDataSource;
+	}
 	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Bean
+    public UserDetailsManager userDetailsService() {
+    	return new JdbcUserDetailsManager(securityDataSource);
+    }
 
-		// use jdbc authentication ... oh yeah!!!
-		
-		auth.jdbcAuthentication().dataSource(securityDataSource);
-		
-	}
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    	
+        return http
+                .authorizeRequests(configurer ->
+                					configurer
+	                					.antMatchers("/").hasRole("EMPLOYEE")
+	                					.antMatchers("/leaders/**").hasRole("MANAGER")
+	                					.antMatchers("/systems/**").hasRole("ADMIN"))
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+                .formLogin(configurer ->
+                			configurer
+                                .loginPage("/showMyLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll())
 
-		http.authorizeRequests()
-			.antMatchers("/").hasRole("EMPLOYEE")
-			.antMatchers("/leaders/**").hasRole("MANAGER")
-			.antMatchers("/systems/**").hasRole("ADMIN")
-			.and()
-			.formLogin()
-				.loginPage("/showMyLoginPage")
-				.loginProcessingUrl("/authenticateTheUser")
-				.permitAll()
-			.and()
-			.logout().permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied");
-		
-	}
+                .logout(configurer -> 
+                		configurer
+                			.permitAll())
+
+                .exceptionHandling(configurer ->
+                					configurer
+                						.accessDeniedPage("/access-denied"))
+
+                .build();
+        
+    }	
 		
 }
-
-
-
-
-
-
