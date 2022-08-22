@@ -34,27 +34,24 @@ public class DemoSecurityConfig {
                 .roles("ADMIN")
                 .build();
         
-        return new InMemoryUserDetailsManager(john, mary, susan);
-        
+        return new InMemoryUserDetailsManager(john, mary, susan);        
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
-        return http
-                .authorizeRequests(configurer ->
-                					configurer
-		                                .anyRequest()
-		                                .authenticated())
-                
-                .formLogin(configurer ->
-                			configurer
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
-                                .permitAll())
-                
-                .build();
-        
-    }	
-    
+    	return http
+		.authorizeRequests(configurer ->
+			configurer
+				.anyRequest()
+				.authenticated())
+
+		.formLogin(configurer ->
+			configurer
+				.loginPage("/showMyLoginPage")
+				.loginProcessingUrl("/authenticateTheUser")
+				.permitAll())
+
+		.build();
+    }	    
 }
