@@ -13,48 +13,41 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class DemoSecurityConfig  {
+public class DemoSecurityConfig {
 
 	// add a reference to our security data source
-		
+
 	private DataSource securityDataSource;
-	
+
 	@Autowired
 	public DemoSecurityConfig(DataSource theSecurityDataSource) {
 		securityDataSource = theSecurityDataSource;
 	}
-	
-    @Bean
-    public UserDetailsManager userDetailsService() {
-    	return new JdbcUserDetailsManager(securityDataSource);
-    }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    	
-        return http
-                .authorizeRequests(configurer ->
-                					configurer
-	                					.antMatchers("/").hasRole("EMPLOYEE")
-	                					.antMatchers("/leaders/**").hasRole("MANAGER")
-	                					.antMatchers("/systems/**").hasRole("ADMIN"))
+	@Bean
+	public UserDetailsManager userDetailsService() {
+		return new JdbcUserDetailsManager(securityDataSource);
+	}
 
-                .formLogin(configurer ->
-                			configurer
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
-                                .permitAll())
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-                .logout(configurer -> 
-                		configurer
-                			.permitAll())
+		return http
+				.authorizeRequests(configurer -> 
+									configurer
+										.antMatchers("/").hasRole("EMPLOYEE")
+										.antMatchers("/leaders/**").hasRole("MANAGER")
+										.antMatchers("/systems/**").hasRole("ADMIN"))
 
-                .exceptionHandling(configurer ->
-                					configurer
-                						.accessDeniedPage("/access-denied"))
+				.formLogin(configurer -> configurer.loginPage("/showMyLoginPage")
+						.loginProcessingUrl("/authenticateTheUser").permitAll())
 
-                .build();
-        
-    }	
-		
+				.logout(configurer -> configurer.permitAll())
+
+				.exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied"))
+
+				.build();
+
+	}
+
 }
