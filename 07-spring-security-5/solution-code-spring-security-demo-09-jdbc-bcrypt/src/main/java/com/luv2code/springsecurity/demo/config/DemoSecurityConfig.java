@@ -32,6 +32,8 @@ public class DemoSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+		int x = 0;
+		
 		return http
 				.authorizeRequests(configurer -> 
 									configurer
