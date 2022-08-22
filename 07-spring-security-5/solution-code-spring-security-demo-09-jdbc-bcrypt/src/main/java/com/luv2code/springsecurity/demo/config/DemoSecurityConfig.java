@@ -31,8 +31,6 @@ public class DemoSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-		int x = 0;
 		
 		return http
 				.authorizeRequests(configurer -> 
@@ -41,12 +39,19 @@ public class DemoSecurityConfig {
 										.antMatchers("/leaders/**").hasRole("MANAGER")
 										.antMatchers("/systems/**").hasRole("ADMIN"))
 
-				.formLogin(configurer -> configurer.loginPage("/showMyLoginPage")
-						.loginProcessingUrl("/authenticateTheUser").permitAll())
+				.formLogin(configurer -> 
+							configurer
+								.loginPage("/showMyLoginPage")
+								.loginProcessingUrl("/authenticateTheUser")
+								.permitAll())
 
-				.logout(configurer -> configurer.permitAll())
+				.logout(configurer -> 
+						configurer
+							.permitAll())
 
-				.exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied"))
+				.exceptionHandling(configurer -> 
+						configurer
+							.accessDeniedPage("/access-denied"))
 
 				.build();
 
