@@ -25,13 +25,13 @@ public class DemoSecurityConfig {
         UserDetails mary = User.builder()
                 .username("mary")
                 .password("{noop}test123")
-                .roles("EMPLOYEE", "MANAGER")
+                .roles("MANAGER")
                 .build();
 
         UserDetails susan = User.builder()
                 .username("susan")
                 .password("{noop}test123")
-                .roles("EMPLOYEE", "ADMIN")
+                .roles("ADMIN")
                 .build();
         
         return new InMemoryUserDetailsManager(john, mary, susan);        
@@ -43,13 +43,12 @@ public class DemoSecurityConfig {
     	return http
 		.authorizeRequests(configurer ->
 			configurer
-				.antMatchers("/").hasRole("EMPLOYEE")
-				.antMatchers("/leaders/**").hasRole("MANAGER")
-				.antMatchers("/systems/**").hasRole("ADMIN"))
+			.anyRequest()
+			.authenticated())
 		
 		.formLogin(configurer ->
 			configurer
-				.loginPage("/showMyLoginPage")
+				.loginPage("/showMyLoginPage")		
 				.loginProcessingUrl("/authenticateTheUser")
 				.permitAll())
 		
