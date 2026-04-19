@@ -44,6 +44,10 @@ For full stack projects, you have the choice of either Angular or React. Pick th
 1. [Full Stack: Angular and Spring Boot](https://www.udemy.com/course/full-stack-angular-spring-boot-tutorial/?referralCode=2264F90C65A86316BB6B)
 1. [Full Stack: React and Spring Boot](https://www.udemy.com/course/full-stack-react-and-java-spring-boot-the-developer-guide/?referralCode=4325FA579FD3D313E28D)
 
+### Java Web Test Automation
+Learn how to automate web browser testing using Java and test automation frameworks:
+1. [Java Playwright: Master Web Test Automation](https://www.luv2code.com/java-playwright-github)
+
 &#8287;
 ## More luv2code Courses
 For more courses, visit the [luv2code website](https://www.luv2code.com). 
